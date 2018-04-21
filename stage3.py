@@ -26,7 +26,7 @@ def count_edges(matrix):
 	for i in range(0,vertices):
 		for j in range(i,vertices):
 			if matrix.item(i,j)==1:
-				edges++
+				edges+=1
 				edge_list.append((i,j))
 	return (vertices,edges,edge_list)
 
@@ -89,16 +89,16 @@ def compute_homology(reduced_matrix,vertices):
 
 	for i in range(0,vertices):
 		if lowest_ones[i]==-1:
-			z0++
+			z0+=1
 		for j in lowest_ones:
 			if j==i:
-				b0++
+				b0+=1
 	for i in range(vertices,matrix_size):
 		if lowest_ones[i]==-1:
-			z1++
+			z1+=1
 		for j in lowest_ones:
 			if j==i:
-				b1++
+				b1+=1
 	return (z0-b0,z1-b1)
 	
 
