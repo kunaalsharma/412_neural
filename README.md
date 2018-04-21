@@ -10,7 +10,7 @@ Files:
 Executing: Python3 required
 
 ```
-python makeAllGraphs [optional bias value] [-nb for nobias] [optional filename suffix for saving adjacency matrix]
+python makeAllGraphs [optional bias value] [optional filename prefix for saving] [-nb for no biases] 
 ```
 
 Note: if no filename is provided, then the adjacency matrix will *NOT* be saved.
