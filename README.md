@@ -1,6 +1,6 @@
-#412_neural
+# 412_neural
 ----------------
-###Stage 2
+### Stage 2
 
 Files: 
 * makeAllGraphs.py
