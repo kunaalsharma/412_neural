@@ -4,6 +4,6 @@ import numpy,os,sys,stage3
 
 filename = "unweightedAdjacencyMatrices/cutOffTenth"
 
-for i in range(9,-1,-1):
+for i in range(0,1):
 	currfile = filename + str(i) + ".txt"
-	print(stage3.main(["",currfile]))
+	print(stage3.main([True,currfile]))

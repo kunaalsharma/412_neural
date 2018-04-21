@@ -1,7 +1,11 @@
-import numpy,sys,os,time
+import numpy,sys,os
 
+'''
+Computes betti 0 and betti1 for an abstract graph saved as an adjacency matrix.
+argv = ["", filename] where filename is a file with a numpy saved adjacency matrix in it
 
-#reads in an adjaency matrix, and returns all betti numbers
+'''
+
 def main(argv):
 	global b_mat
 	global b_size
@@ -18,6 +22,7 @@ def main(argv):
 	get_lowest_ones()
 	reduce_matrix()
 	return compute_homology(vertices)
+
 
 #return the adjacency matrix from file
 def get_adjacency_matrix(filename):
@@ -105,7 +110,3 @@ def compute_homology(vertices):
 
 if __name__=="__main__":
 	main(sys.argv)
-
-
-
-
