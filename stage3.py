@@ -1,12 +1,11 @@
-import numpy,sys,os
+import numpy,sys,os,time
 
 #reads in an adjaency matrix, and returns all betti numbers
-def main():
-	if len(sys.argv)<2:
+def main(argv):
+	if len(argv)<2:
 		print("Please run with arguments\n")
 		return (-1,-1)
-	file = fopen(sys.argv[1])
-	matrix = get_adjacency_matrix(file)
+	matrix = get_adjacency_matrix(argv[1])
 	(vertices,edges,edge_list) = count_edges(matrix)
 	boundary_matrix = make_boundary(vertices,edges,edge_list)
 	boundary_size = boundary_matrix.shape[0]
@@ -15,7 +14,7 @@ def main():
 
 #return the adjacency matrix from file
 def get_adjacency_matrix(filename):
-	matrix = np.loadtxt(filename,dtpye=numpy.int)
+	matrix = numpy.loadtxt(filename,numpy.int)
 	return matrix
 
 #returns the number of faces along with a list of all edges
@@ -32,7 +31,7 @@ def count_edges(matrix):
 
 #makes the boundary matrix and returns it
 def make_boundary(vertices,edges,edge_list):
-	boundary_matrix = numpy.zeroes((vertices+edges,vertices+edges),dtype=numpy.int)
+	boundary_matrix = numpy.zeros((vertices+edges,vertices+edges),dtype=numpy.int)
 	for num, (i,j) in enumerate(edge_list):
 		index = num + vertices
 		boundary_matrix[i,index] = 1
@@ -50,7 +49,7 @@ def get_low(boundary_matrix,j):
 
 #checks to see if there is a lower 1 and returns the index
 def has_lower(boundary_matrix,j):
-	if j==0:
+	if j==0 or get_low(boundary_matrix,j)==-1:
 		return -1
 	for i in range(0,j):
 		if get_low(boundary_matrix,i)==get_low(boundary_matrix,j):
@@ -103,7 +102,7 @@ def compute_homology(reduced_matrix,vertices):
 	
 
 if __name__=="__main__":
-	main()
+	main(sys.argv)
 
 
 
