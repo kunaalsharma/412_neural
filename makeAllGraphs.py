@@ -2,7 +2,6 @@ import sys
 import makeGraph
 import makeGraphNoBias
 import numpy as np
-import tensorflow as tf
 
 
 
