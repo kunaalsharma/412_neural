@@ -11,11 +11,10 @@ def main(argv):
 	global b_size
 	global lowest_ones
 	lowest_ones=[]
-	if len(argv)<2:
+	if len(argv)<1:
 		print("Please run with arguments\n")
 		return (-1,-1)
-
-	matrix = get_adjacency_matrix(argv[1])
+	matrix = get_adjacency_matrix(argv[0])
 	(vertices,edges,edge_list) = count_edges(matrix)
 	b_mat = make_boundary(vertices,edges,edge_list)
 	b_size = b_mat.shape[0]
@@ -109,4 +108,4 @@ def compute_homology(vertices):
 	
 
 if __name__=="__main__":
-	main(sys.argv)
+	main(sys.argv[1:])
