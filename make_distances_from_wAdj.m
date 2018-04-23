@@ -2,6 +2,7 @@ function make_distances_from_wAdj(inputname, numInputMats)
 
 %%% Makes distance matrix from weighted adjactency matrix
 %%% INPUT: Output name from makeAllGraphs, number of adjacency matrices matrices
+%%% Note that output files must be manually edited to remove brackets
 
 for i = 1:numInputMats
     
