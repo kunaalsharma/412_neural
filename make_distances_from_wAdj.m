@@ -28,12 +28,17 @@ for i = 1:numInputMats
     mindist = min(min(distances(distances > 0)));
     maxdist = max(max(distances));
     
+    if i == 1
+        mindist1 = mindist;
+        maxdist1 = maxdist;
+    end
+    
     fid = fopen(sprintf('%s_distances.txt',matfilename),'w');
     fprintf(fid,'%d\n',numpoints);
     fclose(fid);
     
     fid = fopen(sprintf('%s_distances.txt',matfilename),'a');
-    fprintf(fid,sprintf('0 %f %d 3\n',[mindist,ceil(maxdist/mindist)]));
+    fprintf(fid,sprintf('0 %f %d 3\n',[mindist1,ceil(maxdist/mindist1)]));
     fclose(fid);
     
     fid = fopen(sprintf('%s_distances.txt',matfilename),'a');
