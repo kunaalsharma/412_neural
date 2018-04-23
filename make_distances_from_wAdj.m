@@ -17,9 +17,31 @@ for i = 1:numInputMats
     
     edgefilename = sprintf('%s_edge_list.txt',matfilename);
     
-    edgelist_to_point_cloud_dist_mat(edgefilename,'inv'); % Creates distance matrix
+    shortest_paths(edgefilename); % Creates distance matrix
     
     delete(sprintf('%s.mat',matfilename));
-    delete(edgefilename)
+    delete(edgefilename);
+    
+    distancefilename = sprintf('%s_edge_list_SP_distmat.txt',matfilename);
+    distances = importdata(distancefilename);
+    numpoints = size(distances,1);
+    mindist = min(min(distances(distances > 0)));
+    maxdist = max(max(distances));
+    
+    fid = fopen(sprintf('%s_distances.txt',matfilename),'w');
+    fprintf(fid,'%d\n',numpoints);
+    fclose(fid);
+    
+    fid = fopen(sprintf('%s_distances.txt',matfilename),'a');
+    fprintf(fid,sprintf('0 %f %d 3\n',[mindist,ceil(maxdist/mindist)]));
+    fclose(fid);
+    
+    fid = fopen(sprintf('%s_distances.txt',matfilename),'a');
+    fprintf(fid,'%s\n',mat2str(distances));
+    fclose(fid);
+    
+    delete(distancefilename);
 end
+
+
 
