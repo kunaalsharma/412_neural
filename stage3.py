@@ -1,10 +1,14 @@
 import numpy,sys,os
+import matplotlib.pyplot as plt
+import networkx as nx
+
 
 '''
 Computes betti 0 and betti1 for an abstract graph saved as an adjacency matrix.
 argv = ["", filename] where filename is a file with a numpy saved adjacency matrix in it
 
 '''
+
 
 def main(argv):
 	global b_mat
@@ -17,6 +21,7 @@ def main(argv):
 	matrix = get_adjacency_matrix(argv[0])
 	(vertices,edges,edge_list) = count_edges(matrix)
 	b_mat = make_boundary(vertices,edges,edge_list)
+	draw_network(vertices,edge_list,argv[1])
 	b_size = b_mat.shape[0]
 	get_lowest_ones()
 	reduce_matrix()
@@ -27,6 +32,19 @@ def main(argv):
 def get_adjacency_matrix(filename):
 	matrix = numpy.loadtxt(filename)
 	return matrix
+
+#makes a graph and saves it as a .png file
+def draw_network(vertices,edge_list,filename):
+	network = nx.Graph()
+	for i in range(0,vertices):
+		network.add_node(i)
+	for i in edge_list:
+		network.add_edge(*i)
+	pos = nx.spring_layout(network,k=0.15,iterations=20)
+	nx.draw(network,pos,node_color='xkcd:magenta',node_size=1,width=0.2)
+	plt.savefig(filename,edgecolor='xkcd:black',dpi=255)
+	plt.clf()
+	return
 
 #returns the number of faces along with a list of all edges
 def count_edges(matrix):
