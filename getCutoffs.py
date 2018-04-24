@@ -1,7 +1,9 @@
 import numpy,os,sys,stage3,makeAllGraphs
+import matplotlib.pyplot as plt
+import networkx as nx
 
 '''
-Generates adjacency matrices for different cutoff values and optionally also computes betti numbers
+Generates adjacency matrices for different cutoff values and also computes betti numbers
 for these matrices.
 
 main([string outputfilename,float cutoff_step]) 
@@ -25,7 +27,7 @@ def main(argv):
 #runs makeAllGraphs for each step between 0 and 1 according to the cutoff
 def generateCutoffs(cutoff_step):
 	for i in [x/1000.0 for x in range(50,1000,int(cutoff_step*1000))]:
-		makeAllGraphs.main(["",i,filename+str(i).replace(".","")])
+		makeAllGraphs.main(["",i,"-uw","-b",filename+str(i).replace(".","")])
 	return
 
 #computes the betti numbers for each file generated in the previous step
